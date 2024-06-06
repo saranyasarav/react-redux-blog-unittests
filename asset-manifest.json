@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/saranyasarav/react-redux-blog-unittests/static/css/main.d992594f.css",
+    "main.js": "/saranyasarav/react-redux-blog-unittests/static/js/main.cab231e9.js",
+    "static/media/index.cjs": "/saranyasarav/react-redux-blog-unittests/static/media/index.671993152dc0f6e0b17a.cjs",
+    "index.html": "/saranyasarav/react-redux-blog-unittests/index.html",
+    "main.d992594f.css.map": "/saranyasarav/react-redux-blog-unittests/static/css/main.d992594f.css.map",
+    "main.cab231e9.js.map": "/saranyasarav/react-redux-blog-unittests/static/js/main.cab231e9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d992594f.css",
+    "static/js/main.cab231e9.js"
+  ]
+}
