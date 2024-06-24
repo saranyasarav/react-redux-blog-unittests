@@ -9,7 +9,6 @@ import MockAdapter from "axios-mock-adapter";
 import { fetchPosts } from "./features/posts/postsSlice";
 import { act } from "react";
 import store from "./app/store";
-import { expect } from '@jest/globals';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

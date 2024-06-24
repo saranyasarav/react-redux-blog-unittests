@@ -9,19 +9,23 @@ const SinglePostPage = () => {
   const post = useSelector((state) => selectPostById(state, Number(postId)));
   if (!post) {
     return (
-      <section>
+      <section className="container mt-4">
         <h2> Post not found!</h2>
       </section>
     );
   }
   return (
-    <article>
-      <h2>{post.title}</h2>
-      <p>{post.body}</p>
-      <p className="postCredit">
-        <Link to={`/post/edit/${post.id}`}>Edit Post</Link>
-        <PostAuthor userId={post.userId} />
-      </p>
+    <article className="container mt-4">
+      <div className="card-body">
+        <h2 className="card-title">{post.title}</h2>
+        <p className="card-text">{post.body}</p>
+        <div className="d-flex justify-content-between align-items-center">
+          <Link to={`/post/edit/${post.id}`} className="btn btn-primary">
+            Edit Post
+          </Link>
+          <PostAuthor userId={post.userId} />
+        </div>
+      </div>
     </article>
   );
 };

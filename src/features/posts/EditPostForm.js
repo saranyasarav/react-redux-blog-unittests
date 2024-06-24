@@ -7,6 +7,7 @@ import { selectAllUsers } from "../users/usersSlice";
 const EditPostForm = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
+
   const post = useSelector((state) => selectPostById(state, Number(postId)));
   const users = useSelector(selectAllUsers);
 
@@ -19,11 +20,12 @@ const EditPostForm = () => {
 
   if (!post) {
     return (
-      <section>
+      <section className="container mt-4">
         <h2> Post not found</h2>
       </section>
     );
   }
+
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onContentChanged = (e) => setContent(e.target.value);
   const onAuthorChanged = (e) => setUserId(Number(e.target.value));
@@ -73,39 +75,64 @@ const EditPostForm = () => {
   };
 
   return (
-    <section>
-      <h2> Edit Post</h2>
+    <section className="container mt-4">
+      <h2 className="mb-4"> Edit Post</h2>
       <form>
-        <label htmlFor="postTitle"> Post Title:</label>
-        <input
-          type="text"
-          id="postTitle"
-          data-testid="postTitle"
-          name="postTitle"
-          value={title}
-          onChange={onTitleChanged}
-        />
-        <label htmlFor="postAuthor"> Author:</label>
-        <select id="postAuthor" value={userId} data-testid="postAuthor" onChange={onAuthorChanged}>
-          <option value=""></option>
-          {usersOptions}
-        </select>
-        <label htmlFor="postContent"> Post Content:</label>
-        <textarea
-          type="text"
-          id="postContent"
-          name="postContent"
-          data-testid="postContent"
-          value={content}
-          onChange={onContentChanged}
-        />
-
-        <button type="button" onClick={onSavePostClicked} disabled={!canSave}>
+        <div className="mb-3">
+          <label htmlFor="postTitle" className="form-label">
+            Post Title:
+          </label>
+          <input
+            type="text"
+            id="postTitle"
+            className="form-control"
+            data-testid="postTitle"
+            name="postTitle"
+            value={title}
+            onChange={onTitleChanged}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="postAuthor" className="form-label">
+            Author:
+          </label>
+          <select
+            id="postAuthor"
+            className="form-select"
+            data-testid="postAuthor"
+            value={userId}
+            onChange={onAuthorChanged}
+          >
+            <option value=""></option>
+            {usersOptions}
+          </select>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="postContent" className="form-label">
+            Post Content:
+          </label>
+          <textarea
+            type="text"
+            id="postContent"
+            className="form-control"
+            data-testid="postContent"
+            name="postContent"
+            value={content}
+            onChange={onContentChanged}
+          />
+        </div>
+        <button
+          type="button"
+          className="btn btn-primary me-2"
+          onClick={onSavePostClicked}
+          disabled={!canSave}
+        >
           Save Post
         </button>
+        &nbsp;
         <button
-          className="deleteButton"
           type="button"
+          className="btn btn-danger me-2"
           onClick={onDeletePostClicked}
         >
           Delete Post

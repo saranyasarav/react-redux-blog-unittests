@@ -111,7 +111,7 @@ const postsSlice = createSlice({
 
         action.payload.id = sortedPosts[sortedPosts.length - 1].id + 1;
         action.payload.userId = Number(action.payload.userId);
-        console.log(action.payload);
+        //console.log(action.payload);
         state.posts.push(action.payload);
       })
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectAllPosts,
@@ -6,8 +6,6 @@ import {
   getPostsStatus,
   fetchPosts,
 } from "./postsSlice";
-//import PostAuthor from './PostAuthor'
-import { useEffect } from "react";
 import PostPart from "./PostPart";
 
 const PostsList = () => {
@@ -24,17 +22,27 @@ const PostsList = () => {
 
   let content;
   if (postStatus === "loading") {
-    content = <p> "Loading..."</p>;
+    content = <p className="text-center mt-4">Loading...</p>;
   } else if (postStatus === "Succeeded") {
-     // Reverse the array of posts to display the latest one first
-     const reversedPosts = posts.slice().reverse();
-     content = reversedPosts.map((post) => <PostPart key={post.id} post={post} />);
-    //content = posts.map((post) => <PostPart key={post.id} post={post} />);
+    // Reverse the array of posts to display the latest one first
+    const reversedPosts = posts.slice().reverse();
+    content = reversedPosts.map((post) => (
+      <div key={post.id}>
+        <div className="card-body">
+          <PostPart post={post} />
+        </div>
+      </div>
+    ));
   } else if (postStatus === "failed") {
-    content = <p>{postError}</p>;
+    content = <p className="text-danger text-center mt-4">{postError}</p>;
   }
 
-  return <section>{content}</section>;
+  return (
+    <section className="container mt-4">
+      <h2 className="mb-4">Posts</h2>
+      {content}
+    </section>
+  );
 };
 
 export default PostsList;

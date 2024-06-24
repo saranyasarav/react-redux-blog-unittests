@@ -1,7 +1,10 @@
-import "./App.css";
+import React from "react";
 import { Provider } from "react-redux";
-import store from "./app/store";
 import { Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+
+import store from "./app/store";
 import Layout from "./components/Layout";
 import PostsList from "./features/posts/PostsList";
 import AddPostForm from "./features/posts/AddPostForm";
