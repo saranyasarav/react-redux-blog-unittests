@@ -15,18 +15,31 @@ const SinglePostPage = () => {
     );
   }
   return (
-    <article className="container mt-4">
-      <div className="card-body">
-        <h2 className="card-title">{post.title}</h2>
-        <p className="card-text">{post.body}</p>
-        <div className="d-flex justify-content-between align-items-center">
-          <Link to={`/post/edit/${post.id}`} className="btn btn-primary">
-            Edit Post
+    <>
+      <div className="row">
+        <div className="sub-title">
+          <Link to={`/`}>
+            <i className="icon-home"></i>
           </Link>
-          <PostAuthor userId={post.userId} />
+        </div>
+        <div className="col-md-12 content-page">
+          <div className="col-md-12 blog-post show">
+            <div className="post-title">
+              <h1>{post.title}</h1>
+            </div>
+            <div className="post-info">
+              <span>
+                by <PostAuthor userId={post.userId} />
+              </span>
+            </div>
+            <p>{post.body}</p>
+            <Link to={`/post/edit/${post.id}`} className="btn btn-primary">
+              Edit Post
+            </Link>
+          </div>
         </div>
       </div>
-    </article>
+    </>
   );
 };
 

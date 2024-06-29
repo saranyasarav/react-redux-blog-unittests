@@ -4,6 +4,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { addNewPost } from "./postsSlice";
 import { selectAllUsers } from "../users/usersSlice";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AddPostForm = () => {
   const dispatch = useDispatch();
@@ -51,63 +52,80 @@ const AddPostForm = () => {
   ));
 
   return (
-    <section className="container mt-4">
-      <h2 className="mb-4"> Add a New Post</h2>
-      <form>
-        <div className="mb-3">
-          <label htmlFor="postTitle" className="form-label">
-            Post Title:
-          </label>
-          <input
-            type="text"
-            id="postTitle"
-            className="form-control"
-            data-testid="postTitle"
-            name="postTitle"
-            value={title}
-            onChange={onTitleChanged}
-          />
+    <>
+      <div className="row">
+        <div className="sub-title">
+          <h2>Add New Post</h2>
+          <Link to="/">
+            <i className="icon-home"></i>
+          </Link>
         </div>
-        <div className="mb-3">
-          <label htmlFor="postAuthor" className="form-label">
-            Author:
-          </label>
-          <select
-            id="postAuthor"
-            className="form-select"
-            data-testid="postAuthor"
-            value={userId}
-            onChange={onAuthorChanged}
-          >
-            <option value=""></option>
-            {usersOptions}
-          </select>
+        <div className="col-md-12 content-page">
+          <div className="col-md-12 blog-post show">
+            <div className="row margin-top-30">
+              <div className="col-md-12">
+                <div className="row">
+                  <form>
+                    <div className="col-sm-12">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          id="postTitle"
+                          className="form-control"
+                          placeholder="Post Title"
+                          data-testid="postTitle"
+                          name="postTitle"
+                          value={title}
+                          onChange={onTitleChanged}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-sm-12">
+                      <select
+                        id="postAuthor"
+                        className="form-group form-control"
+                        data-testid="postAuthor"
+                        value={userId}
+                        onChange={onAuthorChanged}
+                      >
+                        <option value="" disabled>
+                          Author
+                        </option>
+                        {usersOptions}
+                      </select>
+                    </div>
+                    <div className="col-sm-12">
+                      <div className="textarea-message form-group">
+                        <textarea
+                          id="postContent"
+                          placeholder="Post Content"
+                          rows="5"
+                          className="textarea-message form-control"
+                          data-testid="postContent"
+                          name="postContent"
+                          value={content}
+                          onChange={onContentChanged}
+                        />
+                      </div>
+                    </div>
+                    <div className="text-center col-sm-3 py-10">
+                      <button
+                        type="button"
+                        onClick={onSavePostClicked}
+                        disabled={!canSave}
+                        className="btn btn-primary form-control"
+                      >
+                        Save Post
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="mb-3">
-          <label htmlFor="postContent" className="form-label">
-            {" "}
-            Post Content:
-          </label>
-          <textarea
-            id="postContent"
-            className="form-control"
-            data-testid="postContent"
-            name="postContent"
-            value={content}
-            onChange={onContentChanged}
-          />
-        </div>
-
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={onSavePostClicked}
-          disabled={!canSave}
-        >
-          Save Post
-        </button>
-      </form>
-    </section>
+      </div>
+    </>
   );
 };
 
